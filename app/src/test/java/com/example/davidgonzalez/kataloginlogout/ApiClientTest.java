@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class ApiClientTest {
 
     @Test
-    public void shouldReturnTrueWhenEmailAndPasswordAreCorrect() throws Exception {
+    public void shouldLogInWhenEmailAndPasswordAreCorrect() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(2000));
 
@@ -21,7 +21,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenEmailIsWrong() throws Exception {
+    public void shouldNotLoginWhenEmailIsWrong() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(2000));
 
@@ -31,7 +31,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenPasswordIsWrong() throws Exception {
+    public void shouldNotLoginWhenPasswordIsWrong() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(2000));
 
@@ -41,7 +41,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void shouldReturnFalseWhenPasswordAndEmailAreWrong() throws Exception {
+    public void shouldNotLoginWhenPasswordAndEmailAreWrong() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(2000));
 
@@ -51,7 +51,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenSecondsAreEven() throws Exception {
+    public void shouldLogOutWhenSecondsAreEven() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(2000));
 
@@ -61,7 +61,7 @@ public class ApiClientTest {
     }
 
     @Test
-    public void shouldReturnTrueWhenSecondsAreOdd() throws Exception {
+    public void shouldNotLogOutWhenSecondsAreOdd() throws Exception {
 
         ApiClient apiClient = new ApiClient(new MockClock(3000));
 
