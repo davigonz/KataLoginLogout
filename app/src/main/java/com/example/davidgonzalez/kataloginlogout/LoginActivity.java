@@ -28,8 +28,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                ApiClient apiClient = new ApiClient(new MockClock(2000));
+
                 //Check credentials
-                if (ApiClient.login(email.getText().toString(), password.getText().toString())) {
+                if (apiClient.login(email.getText().toString(), password.getText().toString())) {
                     Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
                     startActivity(intent);
 

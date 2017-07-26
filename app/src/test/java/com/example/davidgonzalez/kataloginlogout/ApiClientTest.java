@@ -13,7 +13,9 @@ public class ApiClientTest {
     @Test
     public void shouldReturnTrueWhenEmailAndPasswordAreCorrect() throws Exception {
 
-        boolean login = ApiClient.login("pedro@karumi.com", "123456");
+        ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+        boolean login = apiClient.login("pedro@karumi.com", "123456");
 
         assertEquals(true, login);
     }
@@ -21,7 +23,9 @@ public class ApiClientTest {
     @Test
     public void shouldReturnFalseWhenEmailIsWrong() throws Exception {
 
-        boolean login = ApiClient.login("pedro@karumi.es", "123456");
+        ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+        boolean login = apiClient.login("pedro@karumi.es", "123456");
 
         assertEquals(false, login);
     }
@@ -29,7 +33,9 @@ public class ApiClientTest {
     @Test
     public void shouldReturnFalseWhenPasswordIsWrong() throws Exception {
 
-        boolean login = ApiClient.login("pedro@karumi.com", "1234");
+        ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+        boolean login = apiClient.login("pedro@karumi.com", "1234");
 
         assertEquals(false, login);
     }
@@ -37,7 +43,9 @@ public class ApiClientTest {
     @Test
     public void shouldReturnFalseWhenPasswordAndEmailAreWrong() throws Exception {
 
-        boolean login = ApiClient.login("pedro@karumi.es", "1234");
+        ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+        boolean login = apiClient.login("pedro@karumi.es", "1234");
 
         assertEquals(false, login);
     }
@@ -45,8 +53,20 @@ public class ApiClientTest {
     @Test
     public void shouldReturnTrueWhenSecondsAreEven() throws Exception {
 
-        boolean logout = ApiClient.logout();
+        ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+        boolean logout = apiClient.logout();
 
         assertEquals(true, logout);
+    }
+
+    @Test
+    public void shouldReturnTrueWhenSecondsAreOdd() throws Exception {
+
+        ApiClient apiClient = new ApiClient(new MockClock(3000));
+
+        boolean logout = apiClient.logout();
+
+        assertEquals(false, logout);
     }
 }

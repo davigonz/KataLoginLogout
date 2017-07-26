@@ -19,7 +19,9 @@ public class LogoutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (ApiClient.logout()) {
+                ApiClient apiClient = new ApiClient(new MockClock(2000));
+
+                if (apiClient.logout()) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);
                 }

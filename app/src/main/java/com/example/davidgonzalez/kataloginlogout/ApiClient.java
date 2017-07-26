@@ -6,23 +6,21 @@ package com.example.davidgonzalez.kataloginlogout;
 
 public class ApiClient {
 
-    public static boolean login (String email, String password) {
+    private Clock clock;
 
-        if (email.equals("pedro@karumi.com") && password.equals("123456")) {
-
-            return true;
-        }
-
-        return false;
+    public ApiClient(Clock clock) {
+        this.clock = clock;
     }
 
-    public static boolean logout () {
+    public boolean login (String email, String password) {
 
-        if (System.currentTimeMillis() / 1000 % 2 == 0) {
+        return email.equals("pedro@karumi.com") && password.equals("123456");
+    }
 
-            return true;
-        }
+    public boolean logout () {
 
-        return false;
+        long now = clock.getCurrentTime();
+
+        return now / 1000 % 2 == 0;
     }
 }
