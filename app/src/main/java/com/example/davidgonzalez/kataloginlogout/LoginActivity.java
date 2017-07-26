@@ -10,36 +10,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+public class LoginActivity extends AppCompatActivity implements LoginView{
 
-public class LoginActivity extends AppCompatActivity {
+    private LoginPresenter loginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ApiClient apiClient = new ApiClient(new Clock());
+
+        loginPresenter = new LoginPresenter(apiClient, this);
+
         final EditText email = (EditText) findViewById(R.id.email);
         final EditText password = (EditText) findViewById(R.id.password);
-        final TextView loginError = (TextView) findViewById(R.id.loginError);
-        Button loginButton = (Button) findViewById(R.id.loginButton);
+        final Button loginButton = (Button) findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ApiClient apiClient = new ApiClient(new MockClock(2000));
-
-                //Check credentials
-                if (apiClient.login(email.getText().toString(), password.getText().toString())) {
-                    Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
-                    startActivity(intent);
-
-                } else {
-
-                    loginError.setText("Ups, wrong credentials");
-                    loginError.setVisibility(View.VISIBLE);
-                }
+                loginPresenter.login(email.getText().toString(), password.getText().toString());
             }
         });
 
@@ -95,5 +87,20 @@ public class LoginActivity extends AppCompatActivity {
     {
 
         // super.onBackPressed(); // Comment this super call to avoid calling finish() or fragmentmanager's backstack pop operation.
+    }
+
+    @Override
+    public void showLogOutActivity() {
+
+        Intent intent = new Intent(getApplicationContext(), LogoutActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void showErrorMessage() {
+
+        final TextView loginError = (TextView) findViewById(R.id.loginError);
+        loginError.setText("Ups, wrong credentials");
+        loginError.setVisibility(View.VISIBLE);
     }
 }
