@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/email"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,14 +15,14 @@
         android:hint="Email" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:layout_below="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:layout_below="@+id/email"
+        android:layout_alignStart="@+id/email"
         android:hint="Password"/>
 
     <Button
@@ -30,20 +30,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log in"
+        android:layout_marginBottom="81dp"
+        android:enabled="false"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="79dp"
-        android:layout_alignEnd="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:enabled="false"/>
+        android:layout_alignEnd="@+id/password"
+        android:layout_alignStart="@+id/password" />
 
     <TextView
         android:id="@+id/loginError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_alignStart="@+id/editText2"
+        android:layout_above="@+id/loginButton"
+        android:layout_alignEnd="@+id/loginButton"
+        android:layout_alignStart="@+id/loginButton"
         android:layout_marginBottom="20dp"
         android:text="TextView"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:textColor="@android:color/holo_red_light"/>
 </RelativeLayout>
